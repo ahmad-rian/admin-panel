@@ -1,75 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+### Aplikasi CRUD 2 Tabel Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 1 . Penjelasan Project
 
-## About Laravel
+```txt
+Aplikasi ini adalah sistem manajemen sederhana yang mengimplementasikan operasi CRUD (Create, Read, Update, Delete) pada dua tabel utama: Departments (Departemen) dan Employees (Karyawan). Dibangun menggunakan framework Laravel, aplikasi ini menyediakan antarmuka admin yang intuitif untuk mengelola data departemen dan karyawan dalam suatu organisasi.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Fitur Utama:
 
--   [Simple, fast routing engine](https://laravel.com/docs/routing).
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--   [Robust background job processing](https://laravel.com/docs/queues).
--   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Manajemen Departemen: Tambah, lihat, edit, dan hapus data departemen
+Manajemen Karyawan: Tambah, lihat, edit, dan hapus data karyawan
+Relasi antar tabel: Setiap karyawan terhubung dengan satu departemen
+Antarmuka pengguna yang responsif dan mudah digunakan
+Validasi input untuk memastikan integritas data
+Pencarian dan filter data untuk kemudahan akses informasi
+```
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 2. Design Database
 
-## About This Project: Admin Panel for Departments and Employees
+-   Departments
 
-This Laravel project implements an Admin Panel application that allows for CRUD (Create, Read, Update, Delete) operations on two main entities: Departments and Employees. Here's a brief overview of the functionality:
+```php
+Schema::create('departments', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
+```
 
-### Features:
+-   Employees
 
-1. **Departments Management**:
+```php
+Schema::create('employees', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->string('email')->unique();
+    $table->foreignId('department_id')->constrained();
+    $table->timestamps();
+});
+```
 
-    - Create new departments
-    - View a list of all departments
-    - Update department details
-    - Delete departments
+### 3. Login
 
-2. **Employees Management**:
+```txt
+Login Menggunakan Laravel UI
+```
 
-    - Add new employees
-    - View a list of all employees
-    - Update employee information
-    - Delete employees
-    - Associate employees with departments
+```php
+composer require laravel/ui
 
-3. **User-friendly Interface**:
+php artisan ui bootstrap --auth
 
-    - Intuitive dashboard for easy navigation
-    - Forms for adding and editing records
-    - Confirmation dialogs for delete operations
+```
 
-4. **Data Validation**:
+### 4. Screenshot Aplikasi
 
-    - Input validation to ensure data integrity
-    - Error handling and user feedback
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;">
+<img src="./login.png" alt="login" style="width: 48%; max-width: 300px;"/>
+  <img src="./register.png" alt="Register" style="width: 48%; max-width: 300px;"/>
+  <img src="./dashboard.png" alt="Dashboard" style="width: 48%; max-width: 300px;"/>
+  <img src="./departments.png" alt="Departemen" style="width: 48%; max-width: 300px;"/>
+  <img src="./employee.png" alt="Karyawan" style="width: 48%; max-width: 300px;"/>
 
-5. **Search and Filter**:
-    - Search functionality for both departments and employees
-    - Filter employees by department
+### 5. Dependency
 
-This Admin Panel provides a straightforward way to manage the organizational structure by handling the relationships between departments and employees efficiently.
+```txt
+Aplikasi ini memiliki beberapa dependency utama:
 
-## Getting Started
+PHP >= 8.1
+Laravel 10.x
+MySQL
+Composer
+Node.js dan NPM (untuk kompilasi asset)
 
-To get started with this project:
+Paket PHP (dikelola melalui Composer):
 
-1. Clone the repository
-2. Install dependencies with `composer install`
-3. Set up your `.env` file
-4. Run migrations with `php artisan migrate`
-5. Seed the database (if seeders are provided) with `php artisan db:seed`
-6. Start the development server with `php artisan serve`
+laravel/framework: ^10.10
+laravel/sanctum: ^3.2
+laravel/tinker: ^2.8
 
-For more detailed instructions on setting up a Laravel project, please refer to the [Laravel documentation](https://laravel.com/docs).
+Paket JavaScript (dikelola melalui NPM):
 
-[The rest of the original README content follows...]
+axios: ^1.1.2
+laravel-vite-plugin: ^0.7.5
+lodash: ^4.17.21
+postcss: ^8.4.23
+vite: ^4.0.0
+```
+
+### 6. Instalasi
+
+```bash
+# Clone repository
+git clone https://github.com/ahmad-rian/admin-panel
+
+# Masuk ke direktori proyek
+cd admin-panel
+
+# Install dependensi PHP
+composer install
+
+# Copy file .env
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+
+# Konfigurasi database di file .env
+
+# Jalankan migrasi
+php artisan migrate
+
+# Install dependensi JavaScript
+npm install
+
+# Compile assets
+npm run dev
+
+# Jalankan server
+php artisan serve
+```
+
+### 7. Penggunaan
+
+```txt
+1. Buka aplikasi di browser (biasanya di http://localhost:8000)
+2. Register akun baru atau login jika sudah memiliki akun
+3. Navigasi melalui menu untuk mengelola Departemen dan Karyawan
+4. Gunakan fitur CRUD untuk menambah, melihat, mengedit, atau menghapus data
+```
