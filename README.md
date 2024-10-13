@@ -55,11 +55,11 @@ php artisan ui bootstrap --auth
 ### 4. Screenshot Aplikasi
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between;">
-<img src="./login.png" alt="login" style="width: 48%; max-width: 300px;"/>
-  <img src="./register.png" alt="Register" style="width: 48%; max-width: 300px;"/>
-  <img src="./dashboard.png" alt="Dashboard" style="width: 48%; max-width: 300px;"/>
-  <img src="./departments.png" alt="Departemen" style="width: 48%; max-width: 300px;"/>
-  <img src="./employee.png" alt="Karyawan" style="width: 48%; max-width: 300px;"/>
+<img src="/Screenshot/login.png" alt="login" style="width: 48%; max-width: 300px;"/>
+  <img src="/Screenshot/register.png" alt="Register" style="width: 48%; max-width: 300px;"/>
+  <img src="/Screenshot/dashboard.png" alt="Dashboard" style="width: 48%; max-width: 300px;"/>
+  <img src="/Screenshot/departments.png" alt="Departemen" style="width: 48%; max-width: 300px;"/>
+  <img src="/Screenshot/employee.png" alt="Karyawan" style="width: 48%; max-width: 300px;"/>
 
 ### 5. Dependency
 
